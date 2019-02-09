@@ -39,9 +39,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.rbMmove = new System.Windows.Forms.RadioButton();
             this.rbCopy = new System.Windows.Forms.RadioButton();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.button1 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtBoxSource
@@ -151,13 +149,6 @@
             this.rbCopy.UseVisualStyleBackColor = true;
             this.rbCopy.CheckedChanged += new System.EventHandler(this.rdCopy_CheckedChanged);
             // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(28, 323);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(499, 38);
-            this.progressBar1.TabIndex = 11;
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(28, 272);
@@ -168,23 +159,12 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(225, 263);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 18);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "label4";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(552, 373);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.rbCopy);
             this.Controls.Add(this.rbMmove);
             this.Controls.Add(this.label3);
@@ -218,9 +198,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.RadioButton rbMmove;
         private System.Windows.Forms.RadioButton rbCopy;
-        private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label4;
     }
 }
 
