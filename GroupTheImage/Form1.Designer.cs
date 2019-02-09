@@ -48,6 +48,7 @@
             this.txtBoxSource.Name = "txtBoxSource";
             this.txtBoxSource.Size = new System.Drawing.Size(418, 26);
             this.txtBoxSource.TabIndex = 0;
+            this.txtBoxSource.TextChanged += new System.EventHandler(this.txtBoxSource_TextChanged);
             // 
             // label1
             // 
@@ -102,6 +103,7 @@
             this.lblBasicInfo.Size = new System.Drawing.Size(37, 18);
             this.lblBasicInfo.TabIndex = 6;
             this.lblBasicInfo.Text = "Info:";
+            this.lblBasicInfo.Visible = false;
             // 
             // chkBoxList
             // 
@@ -134,6 +136,7 @@
             this.rbMmove.TabIndex = 9;
             this.rbMmove.Text = "Move";
             this.rbMmove.UseVisualStyleBackColor = true;
+            this.rbMmove.Visible = false;
             this.rbMmove.CheckedChanged += new System.EventHandler(this.rbMmove_CheckedChanged);
             // 
             // rbCopy
@@ -147,6 +150,7 @@
             this.rbCopy.TabStop = true;
             this.rbCopy.Text = "Copy";
             this.rbCopy.UseVisualStyleBackColor = true;
+            this.rbCopy.Visible = false;
             this.rbCopy.CheckedChanged += new System.EventHandler(this.rdCopy_CheckedChanged);
             // 
             // button1

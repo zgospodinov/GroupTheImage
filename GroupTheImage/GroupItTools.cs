@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace GroupTheImage
 {
-
     public static class GroupItTools
     {
         private static bool allFiletypes = true;
@@ -64,11 +63,11 @@ namespace GroupTheImage
 
                     using (FileStream destination = File.Create(newFullName))
                     {
-                        await fs.CopyToAsync(destination);
+                        if (option == GroupOption.Copy)
+                            await fs.CopyToAsync(destination);
 
                     }
                 }
-
             }
         }
 

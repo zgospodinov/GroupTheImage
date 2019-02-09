@@ -15,8 +15,10 @@ namespace GroupTheImage
 {
     public partial class Form1 : Form
     {
-        private string sourcePath = string.Empty;
+        private string sourcePathCopy = string.Empty;
+        //private string sourcePathMove = string.Empty;
         private string outputPath = string.Empty;
+        private string outputPathMove = string.Empty;
         private List<string> extensions = new List<string>();
 
         // Default value
@@ -40,38 +42,39 @@ namespace GroupTheImage
             dialog.Title = "Select resource folder";
             if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                sourcePath = dialog.FileName;
-                txtBoxSource.Text = sourcePath;
-
-                var content = GroupItTools.GetContent(sourcePath);
-                StringBuilder sbBasicInfo = new StringBuilder();
-                int count  = 0;
-
-                //  Amount
-                content.ForEach(c => count++);
-
-                //  File extensnions
-                extensions.Clear();
-                foreach (string fileName in content)
-                {
-                    var ext = Path.GetExtension(fileName);
-                    if (!extensions.Contains(ext.ToLower()))
-                    {
-                        extensions.Add(ext.ToLower());
-                    }
-                }
-
-                lblBasicInfo.Text = $"Info: Total files: {count}";
-
-                List<int> boxesWidths = new List<int>();
-                for (int i = 0; i < extensions.Count; i++)
-                {
-                    boxesWidths.Add(extensions[i].Length);
-                    chkBoxList.Items.Add(extensions[i]);
-                }
-
-                chkBoxList.ColumnWidth = boxesWidths.Max() * 15;
+                sourcePathCopy = dialog.FileName;
+                txtBoxSource.Text = sourcePathCopy;
             }
+        }
+
+        private void GetExtensions(string sourcePathCopy)
+        {
+            var content = GroupItTools.GetContent(sourcePathCopy);
+            StringBuilder sbBasicInfo = new StringBuilder();
+            int count = 0;
+
+            //  Amount
+            content.ForEach(c => count++);
+
+            //  File extensnions
+            extensions.Clear();
+            foreach (string fileName in content)
+            {
+                var ext = Path.GetExtension(fileName);
+                if (!extensions.Contains(ext.ToLower()))
+                {
+                    extensions.Add(ext.ToLower());
+                }
+            }
+
+            List<int> boxesWidths = new List<int>();
+            for (int i = 0; i < extensions.Count; i++)
+            {
+                boxesWidths.Add(extensions[i].Length);
+                chkBoxList.Items.Add(extensions[i]);
+            }
+
+            chkBoxList.ColumnWidth = boxesWidths.Max() * 15;
         }
 
         private void btnGetDestination_Click(object sender, EventArgs e)
@@ -100,20 +103,35 @@ namespace GroupTheImage
         {
             try
             {
-                var chosenFileTypes = chkBoxList.CheckedItems.Cast<string>().ToList();
+                sourcePathCopy = txtBoxSource.Text;
+                outputPath = txtBoxDestination.Text;
 
+                var chosenFileTypes = chkBoxList.CheckedItems.Cast<string>().ToList();
+                //lblBasicInfo.Text = $"Info: Total files: {}";
+
+                #region Tests
                 // TODO: Remove hardcoded paths
-                sourcePath = @"D:\Pictures\all";
-                outputPath = @"D:\Pictures\output";
-                chosenFileTypes = new List<string>() { ".jpg", ".cr2" };
+                //sourcePathCopy = @"D:\Pictures\all";
+                //sourcePathMove = @"D:\Pictures\testing - Copy";
+
+                //outputPath = @"D:\Pictures\output";
+                //outputPathMove = @"D:\Pictures\output - Copy";
+
+                //chosenFileTypes = new List<string>() { ".jpg", ".cr2" };
+                #endregion
 
                 // Call Group API main function
-                GroupItTools.GroupImages(sourcePath, outputPath, new List<string>(), option);
+                GroupItTools.GroupImages(sourcePathCopy, outputPath, chosenFileTypes, option);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void txtBoxSource_TextChanged(object sender, EventArgs e)
+        {
+            GetExtensions(sourcePathCopy);
         }
     }
 }
